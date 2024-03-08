@@ -1,0 +1,7 @@
+node_modules
+config.json
+.DS_store
+.env
+henshin
+serviceAccountKey.json
+test.js
