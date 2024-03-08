@@ -60,6 +60,7 @@ module.exports = {
 
     async execute(interaction) {
         console.log('学習中...');
+        await interaction.deferReply();
 
         // メンションで指定されているユーザーを取得
         const user_name = interaction.options.getString("学習対象のメンバーのユーザーネーム");
@@ -82,13 +83,13 @@ module.exports = {
         if (member_content.exists) {
             interaction.client.metamon = user_name;
             interaction.client.content = member_content.data()["content"];
-            interaction.reply({
+            interaction.editReply({
                 content: `メタモンは　${user_name}に　へんしんを　した！`,
                 // ephemeral: true
             });
             return;
         } else { // 学習済みでない場合、新規学習を行わずに例外処理を行う
-            interaction.reply({
+            interaction.editReply({
                 content: `メタモンは　${user_name}に　へんしん　できなかった！\nユーザーネームを　まちがえてるかも！`,
                 // ephemeral: true
             });
